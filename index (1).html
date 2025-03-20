@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-search-location"></i>
+                Lost & Found
+            </div>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#lost"><i class="fas fa-question-circle"></i> Lost Items</a></li>
+                <li><a href="#found"><i class="fas fa-check-circle"></i> Found Items</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Welcome to Lost & Found</h1>
+            <p>Reuniting people with their lost items</p>
+            <div class="search-container">
+                <input type="text" placeholder="Search for lost or found items...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </section>
+
+        <section id="lost" class="items">
+            <h2>Lost Items</h2>
+            <div class="item-grid">
+                <div class="item">
+                    <img src="https://via.placeholder.com/150" alt="Lost Wallet">
+                    <h3>Lost Wallet</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Last seen: Central Park</p>
+                    <p><i class="far fa-calendar-alt"></i> Date: 2023-05-15</p>
+                    <a href="#" class="btn">More Info</a>
+                </div>
+                <div class="item">
+                    <img src="https://via.placeholder.com/150" alt="Missing Phone">
+                    <h3>Missing Phone</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Last seen: Main Street Cafe</p>
+                    <p><i class="far fa-calendar-alt"></i> Date: 2023-05-14</p>
+                    <a href="#" class="btn">More Info</a>
+                </div>
+                <div class="item">
+                    <img src="https://via.placeholder.com/150" alt="Lost Keys">
+                    <h3>Lost Keys</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Last seen: City Library</p>
+                    <p><i class="far fa-calendar-alt"></i> Date: 2023-05-13</p>
+                    <a href="#" class="btn">More Info</a>
+                </div>
+            </div>
+            <a href="#" class="view-all">View All Lost Items</a>
+        </section>
+
+        <section id="found" class="items">
+            <h2>Found Items</h2>
+            <div class="item-grid">
+                <div class="item">
+                    <img src="https://via.placeholder.com/150" alt="Found Backpack">
+                    <h3>Found Backpack</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Location: Bus Station</p>
+                    <p><i class="far fa-calendar-alt"></i> Date: 2023-05-15</p>
+                    <a href="#" class="btn">More Info</a>
+                </div>
+                <div class="item">
+                    <img src="https://via.placeholder.com/150" alt="Found Glasses">
+                    <h3>Found Glasses</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Location: City Park</p>
+                    <p><i class="far fa-calendar-alt"></i> Date: 2023-05-14</p>
+                    <a href="#" class="btn">More Info</a>
+                </div>
+                <div class="item">
+                    <img src="https://via.placeholder.com/150" alt="Found Watch">
+                    <h3>Found Watch</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Location: Shopping Mall</p>
+                    <p><i class="far fa-calendar-alt"></i> Date: 2023-05-13</p>
+                    <a href="#" class="btn">More Info</a>
+                </div>
+            </div>
+            <a href="#" class="view-all">View All Found Items</a>
+        </section>
+
+        <section class="cta">
+            <h2>Lost Something?</h2>
+            <p>Report your lost item and increase your chances of finding it.</p>
+            <a href="#" class="btn btn-large">Report Lost Item</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Lost & Found is dedicated to helping people reunite with their lost belongings.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Lost & Found. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
