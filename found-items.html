@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Found Items - Vault</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <div id="navbar"></div>
+
+
+    <main>
+        <div id="found-items-container">
+            <section class="items">
+                <h2>FOUND Items</h2>
+                <div class="search-container">
+                    <input type="text" placeholder="Search lost items...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="item-grid">
+                    <div class="item">
+                        <img src="https://via.placeholder.com/150" alt="Lost Wallet">
+                        <h3>Lost Wallet</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Last seen: Central Park</p>
+                        <p><i class="far fa-calendar-alt"></i> Date: 2023-05-15</p>
+                        <a href="item-details.html?id=1" class="btn">More Info</a>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/150" alt="Missing Phone">
+                        <h3>Missing Phone</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Last seen: Main Street Cafe</p>
+                        <p><i class="far fa-calendar-alt"></i> Date: 2023-05-14</p>
+                        <a href="item-details.html?id=2" class="btn">More Info</a>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/150" alt="Lost Keys">
+                        <h3>Lost Keys</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Last seen: City Library</p>
+                        <p><i class="far fa-calendar-alt"></i> Date: 2023-05-13</p>
+                        <a href="item-details.html?id=3" class="btn">More Info</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Vault is dedicated to helping people reunite with their lost belongings.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Vault. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        const foundItemsContainer = document.getElementById('found-items-container');
+
+        db.collection('items').where('type', '==', 'found').get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const item = doc.data();
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item-card';
+                itemElement.innerHTML = `
+                    <h3>${item.name}</h3>
+                    <p>Location: ${item.location}</p>
+                    <p>Date: ${item.date}</p>
+                    <a href="item-details.html?id=${doc.id}" class="btn">More Info</a>
+                `;
+                foundItemsContainer.appendChild(itemElement);
+            });
+        });
+</script>
+
+<script>
+    fetch("navbar.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("navbar").innerHTML = data);
+
+</script>
+
+</body>
+</html>
+
