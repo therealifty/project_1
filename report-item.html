@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Item - Vault</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+</head>
+<body>
+    <div id="navbar"></div>
+
+
+    <main>
+        <div class="form-container">
+            <h2>Report Item</h2>
+            <form id="report-item-form">
+                <div class="form-group">
+                    <label for="name">Item Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select id="type" required>
+                        <option value="lost">Lost</option>
+                        <option value="found">Found</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" accept="image/*">
+                </div>
+                <button type="submit" class="btn">Report Item</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Vault is dedicated to helping people reunite with their lost belongings.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#">Facebook</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Vault. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        const reportItemForm = document.getElementById('report-item-form');
+
+        reportItemForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const description = document.getElementById('description').value;
+            const type = document.getElementById('type').value;
+            const location = document.getElementById('location').value;
+            const date = document.getElementById('date').value;
+            const imageFile = document.getElementById('image').files[0];
+
+            try {
+                let imageUrl = '';
+                if (imageFile) {
+                    const storageRef = storage.ref(`items/${Date.now()}_${imageFile.name}`);
+                    await storageRef.put(imageFile);
+                    imageUrl = await storageRef.getDownloadURL();
+                }
+
+                const itemData = {
+                    name,
+                    description,
+                    type,
+                    location,
+                    date,
+                    imageUrl,
+                    userId: auth.currentUser.uid,
+                    createdAt: new Date()
+                };
+
+                await db.collection('items').add(itemData);
+                alert('Item reported successfully!');
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Error reporting item:', error);
+                alert('Failed to report item. Please try again.');
+            }
+        });
+    </script>
+
+
+<script>
+    fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => document.getElementById("navbar").innerHTML = data);
+</script>
+
+</body>
+</html>
+
